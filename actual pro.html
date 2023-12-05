@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS calculator</title>
+    <link rel="stylesheet" href="actual pro.css">
+</head>
+<body>
+    
+    <div id="in">
+        <input type="text" id="calcu" name="answer" placeholder="0">
+    </div>
+    <div class= "formstyle">
+        <form name="form1">
+            <button type="button" id="plus" onclick="appendToAnswer('+')">+</button>
+            <button type="button" id="minus" onclick="appendToAnswer('-')">-</button>
+            <button type="button" id="mul" onclick="appendToAnswer('*')">&times;</button>
+            <button type="button" id="division" onclick="appendToAnswer('/')">÷</button>
+            <button type="button" id="seven" onclick="appendToAnswer('7')">7</button>
+            <button type="button" id="eigth" onclick="appendToAnswer('8')">8</button>
+            <button type="button" id="nine" onclick="appendToAnswer('9')">9</button>
+            <button type="button" id="four" onclick="appendToAnswer('4')">4</button>
+            <button type="button" id="five" onclick="appendToAnswer('5')">5</button>
+            <button type="button" id="six" onclick="appendToAnswer('6')">6</button>
+            <button type="button" id="one" onclick="appendToAnswer('1')">1</button>
+            <button type="button" id="two" onclick="appendToAnswer('2')">2</button>
+            <button type="button" id="three" onclick="appendToAnswer('3')">3</button>
+            <button type="button" id="zero" onclick="appendToAnswer('0')">0</button>
+            <button type="button" id="point" onclick="appendToAnswer('.')">.</button>
+            <button type="button" id="per" onclick="calculatePercentage()">%</button>
+            <button type="button" onclick="clearAnswer()" id="clear">AC</button>
+            <button type="button" id="equal" onclick="calculate()">=</button>
+        </form>
+    </div>
+
+    <script>
+        function appendToAnswer(value) {
+            const answerField = document.getElementById('calcu');
+            answerField.value += value;
+        }
+
+        function clearAnswer() {
+            const answerField = document.getElementById('calcu');
+            answerField.value = '';
+        }
+
+        function calculate() {
+            const answerField = document.getElementById('calcu');
+            try {
+                answerField.value = eval(answerField.value);
+            } catch (error) {
+                answerField.value = 'Error';
+            }
+        }
+
+        function calculatePercentage() {
+            const answerField = document.getElementById('calcu');
+            const currentValue = parseFloat(answerField.value);
+            if (!isNaN(currentValue)) {
+                answerField.value = (currentValue / 100).toFixed(2); 
+            }
+        }
+    </script>
+</body>
+</html>
